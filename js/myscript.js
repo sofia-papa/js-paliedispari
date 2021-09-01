@@ -10,33 +10,52 @@ if(parola == parolaPali){
   }
   
 function invertiParola(str){
-  var strInversa = str.split('').reverse().join('');  
+  let strInversa = str.split('').reverse().join('');  //split trasforma una stringa in un array separandola
+                                                      //reverse inverrte l'ordine degli elementi dell'array
+                                                      //join trasforma un array in una stringa unendola
   return strInversa;
 }
 
 //pari e dispari
 
-let numero = parseInt(prompt("Inserisci un numero"))
+let pariODispari = prompt("Inserisci -pari- o -dispari-");
 
-for (i = 0; i < 5; i++ ){
-        numeroComputer = getRandomInt(1,5);
-    }
-    console.log(numeroComputer);
+while ( pariODispari.length === 0 || 
+    ( pariODispari.trim().toLowerCase() != 'pari' && pariODispari.trim().toLowerCase() != 'dispari')){
+    pariODispari = prompt("Inserisci -pari- o -dispari-");
+}
+
+let numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 5"));
+
+while (numeroUtente < 1 || numeroUtente >= 6)  {
+    numeroUtente = parseInt(prompt("Inserisci un numero da 1 a 5"));
+}
+
+console.log(pariODispari);
+console.log(numeroUtente);
 
 
-//funzione per ottenere un numero randomico 
-function getRandomInt(min,max){
-    min = Math.ceil(min);
-    max = Math.floor(max);
+let numeroRandom =  getRandomNumber(1,5);
+let somma = numeroUtente + numeroRandom ;
+console.log(" Numero computer: " + numeroRandom);
+
+let risultatoPariODispari = checkPariODispari(somma);
+
+
+if (risultatoPariODispari == pariODispari){
+    console.log('HAI VINTO!');
+} else {
+    console.log('HA VINTO IL PC');
+}
+
+function getRandomNumber(min, max)
+{
     return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-function IsNotUneven(numero){
-    if (isNaN(numero) == false){
-        return (numero %2 == 1 ?  true : false);
-    } else {
-        return null;
+function checkPariODispari(numero){
+    if (numero % 2 == 0){
+        return 'pari';
     }
+    return 'dispari';
 }
-
-console.log(numero);
